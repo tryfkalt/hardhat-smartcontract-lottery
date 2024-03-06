@@ -13,13 +13,18 @@ module.exports = async function () {
   }
 };
 
+// async function updateAbi() {
+//   const raffle = await ethers.getContract("Raffle");
+//   fs.writeFileSync(
+//     FRONT_END_ABI_FILE,
+//     // With the .interface.format method, we can get the abi in the format we want
+//     JSON.stringify(raffle.interface.format(ethers.utils.FormatTypes.json), null, 2)
+//   );
+// }
+
 async function updateAbi() {
   const raffle = await ethers.getContract("Raffle");
-  fs.writeFileSync(
-    FRONT_END_ABI_FILE,
-    // With the .interface.format method, we can get the abi in the format we want
-    JSON.stringify(raffle.interface.format(ethers.utils.FormatTypes.json), null, 2)
-  );
+  fs.writeFileSync(FRONT_END_ABI_FILE, JSON.stringify(raffle.interface.fragments));
 }
 
 async function updateContractAddresses() {
